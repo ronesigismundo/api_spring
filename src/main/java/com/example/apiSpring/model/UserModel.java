@@ -13,8 +13,15 @@ public class UserModel {
 
     private String email;
 
+    public UserModel() {}
+
     public Long getId() {
         return id;
+    }
+
+    public UserModel(String name, String email) {
+        this.name = name;
+        this.email = email;
     }
 
     public void setId(Long id) {

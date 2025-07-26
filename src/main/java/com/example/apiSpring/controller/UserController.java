@@ -1,5 +1,6 @@
 package com.example.apiSpring.controller;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -8,8 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.apiSpring.dto.UserDTO;
 import com.example.apiSpring.model.UserModel;
 import com.example.apiSpring.service.UserService;
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -27,8 +30,8 @@ public class UserController {
     }
 
     @PostMapping()
-    public UserModel postUser(@RequestBody UserModel userModel) {
-        return userService.create(userModel);
+    public UserModel postUser(@Valid @RequestBody UserDTO userDTO) {
+        return userService.create(userDTO.toModel());
     }
 
     @GetMapping("/{id}")
